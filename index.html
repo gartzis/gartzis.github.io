@@ -21,22 +21,79 @@
       background-size: cover;
       color: var(--dark);
     }
-    header { background: var(--primary); color: var(--light); padding: 2rem 0; text-align: center; }
-    nav { background: var(--dark); }
-    nav ul { display: flex; justify-content: center; list-style: none; }
-    nav a { color: var(--light); padding: 1rem 1.5rem; text-decoration: none; display: block; }
-    nav a:hover { background: var(--secondary); }
-    main { background: rgba(255,255,255,0.85); max-width: 800px; margin: 2rem auto; padding: 2rem 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    section { margin-bottom: 3rem; }
-    section h2 { border-bottom: 2px solid var(--secondary); padding-bottom: .5rem; margin-bottom: 1rem; color: var(--primary); }
-    ul { list-style: none; }
-    ul li { margin-bottom: .75rem; }
-    footer { text-align: center; padding: 1rem; background: var(--dark); color: var(--light); }
-    .period { color: #666; font-size: 0.9rem; }
+    header {
+      position: relative;
+      background: var(--primary);
+      color: var(--light);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .profile-pic {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--light);
+    }
+    nav {
+      background: var(--dark);
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    nav a {
+      color: var(--light);
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      display: block;
+    }
+    nav a:hover {
+      background: var(--secondary);
+    }
+    main {
+      background: rgba(255,255,255,0.85);
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    section h2 {
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: .5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    ul {
+      list-style: none;
+    }
+    ul li {
+      margin-bottom: .75rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--dark);
+      color: var(--light);
+    }
+    .period {
+      color: #666;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
   <header>
+    <!-- add your profile picture here -->
+    <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
     <h1>Christos Gkartzios</h1>
     <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
   </header>
@@ -136,7 +193,7 @@
       <h2>Contact</h2>
       <ul>
         <li>Email: <a href="mailto:chris.gartzios@hotmail.com">chris.gartzios@hotmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/christos-gartzios" target="_blank">Profile</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/christos-gkartzios" target="_blank">Profile</a></li>
         <li>GitHub: <a href="https://github.com/gartzis" target="_blank">github.com/gartzis</a></li>
       </ul>
     </section>
