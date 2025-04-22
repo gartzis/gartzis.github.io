@@ -9,17 +9,24 @@
       --primary: #2c3e50;
       --secondary: #18bc9c;
       --light: #ecf0f1;
-      --dark: #34495e;
+      --dark: #000000; /* text color set to black */
       --accent: #e74c3c;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; background: var(--light); color: var(--dark); }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      /* background image: replace 'landscape.jpg' with your file in assets/images */
+      background: url("assets/images/landscape.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--dark);
+    }
     header { background: var(--primary); color: var(--light); padding: 2rem 0; text-align: center; }
     nav { background: var(--dark); }
     nav ul { display: flex; justify-content: center; list-style: none; }
     nav a { color: var(--light); padding: 1rem 1.5rem; text-decoration: none; display: block; }
     nav a:hover { background: var(--secondary); }
-    main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    main { background: rgba(255,255,255,0.85); max-width: 800px; margin: 2rem auto; padding: 2rem 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
     section { margin-bottom: 3rem; }
     section h2 { border-bottom: 2px solid var(--secondary); padding-bottom: .5rem; margin-bottom: 1rem; color: var(--primary); }
     ul { list-style: none; }
