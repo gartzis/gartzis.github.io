@@ -21,3 +21,24 @@
   margin-left: 1.5rem;
   margin-top: 0.5rem;
 }
+
+
+#publications {
+  padding: 2rem 0;
+}
+#publications h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+#publications ul {
+  list-style: none;
+  padding: 0;
+}
+#publications li {
+  margin-bottom: 1.25rem;
+}
+#publications a {
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
