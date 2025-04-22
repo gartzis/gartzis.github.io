@@ -21,19 +21,12 @@
       background-size: cover;
       color: var(--dark);
     }
-    header {
-      /* first: the image, sized to cover */
-      background: url("assets/images/header_landscape.jpg") center top / cover no-repeat;
-      /* then add a dark overlay so your white text still pops: */
-      background‑blend‑mode: multiply;
-      background‑color: rgba(44, 62, 80, 0.8);
-      min-height: 300px;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+     header {
+      position: relative;
+      background: var(--primary);
       color: var(--light);
+      padding: 2rem 0;
+      text-align: center;
     }
     .profile-pic {
       position: relative;
