@@ -42,3 +42,24 @@
   font-size: 0.9rem;
 }
 
+
+#honors-awards {
+  padding: 2rem 0;
+}
+#honors-awards h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+#honors-awards ul {
+  list-style: none;
+  padding: 0;
+}
+#honors-awards li {
+  margin-bottom: 1rem;
+}
+#honors-awards .period {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+
