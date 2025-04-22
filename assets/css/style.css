@@ -1,0 +1,23 @@
+#academic-experience {
+  padding: 2rem 0;
+}
+#academic-experience h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+#academic-experience .period {
+  color: #666;
+  font-size: 0.9rem;
+}
+#academic-experience ul {
+  list-style: none;
+  padding: 0;
+}
+#academic-experience > ul > li {
+  margin-bottom: 1.5rem;
+}
+#academic-experience ul ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
