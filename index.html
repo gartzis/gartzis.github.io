@@ -3,108 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to My GitHub Pages Site</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Christos Gkartzios</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #18bc9c;
+      --light: #ecf0f1;
+      --dark: #34495e;
+      --accent: #e74c3c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; background: var(--light); color: var(--dark); }
+    header { background: var(--primary); color: var(--light); padding: 2rem 0; text-align: center; }
+    nav { background: var(--dark); }
+    nav ul { display: flex; justify-content: center; list-style: none; }
+    nav a { color: var(--light); padding: 1rem 1.5rem; text-decoration: none; display: block; }
+    nav a:hover { background: var(--secondary); }
+    main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    section { margin-bottom: 3rem; }
+    section h2 { border-bottom: 2px solid var(--secondary); padding-bottom: .5rem; margin-bottom: 1rem; color: var(--primary); }
+    ul { list-style: none; }
+    ul li { margin-bottom: .75rem; }
+    footer { text-align: center; padding: 1rem; background: var(--dark); color: var(--light); }
+    .period { color: #666; font-size: 0.9rem; }
+  </style>
 </head>
 <body>
-  <main>
-  <h1>Hello, I’m Christos Gkartzios!</h1>
-  <p>This is my personal GitHub Pages site.</p>
+  <header>
+    <h1>Christos Gkartzios</h1>
+    <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
+  </header>
 
-  <section id="education">
-    <h2>Education</h2>
+  <nav>
     <ul>
-      <li>
-        <strong>Ph.D. Candidate in Computer Science</strong>, University of Ioannina, Greece  
-        <span class="period">(2022 – Present)</span><br>
-        <em>Research Focus:</em> Future temporal queries, shortest paths, and fairness in network analysis.
-      </li>
-      <li>
-        <strong>M.Sc. in Data Science and Engineering</strong>, University of Ioannina, Greece  
-        <span class="period">(2022)</span>
-      </li>
-      <li>
-        <strong>Diploma in Computer Science and Engineering (Integrated M.Sc.)</strong>, University of Ioannina, Greece  
-        <span class="period">(2021)</span>
-      </li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#academic-experience">Academic Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#honors-awards">Honors & Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-</section>
+  </nav>
 
-
-<section id="academic-experience">
-  <h2>Academic Experience</h2>
-  <ul>
-    <li>
-      <strong>Researcher, GraphTempo</strong>, University of Ioannina, Greece  
-      <span class="period">(2022 – Present)</span>
+  <main>
+    <section id="education">
+      <h2>Education</h2>
       <ul>
-        <li>Developed algorithms for future temporal shortest path queries.</li>
-        <li>Applied graph embeddings and machine learning models for predictive path queries.</li>
+        <li>
+          <strong>Ph.D. Candidate in Computer Science</strong>, University of Ioannina, Greece  
+          <span class="period">(2022–Present)</span><br>
+          <em>Research Focus:</em> Future temporal queries, shortest paths, and fairness in network analysis.
+        </li>
+        <li>
+          <strong>M.Sc. in Data Science and Engineering</strong>, University of Ioannina, Greece  
+          <span class="period">(2022)</span>
+        </li>
+        <li>
+          <strong>Diploma in Computer Science and Engineering (Integrated M.Sc.)</strong>, University of Ioannina, Greece  
+          <span class="period">(2021)</span>
+        </li>
       </ul>
-    </li>
-    <li>
-      <strong>Teaching Assistant, Database Lab</strong>, University of Ioannina, Greece  
-      <span class="period">(2022 – Present)</span>
+    </section>
+
+    <section id="academic-experience">
+      <h2>Academic Experience</h2>
       <ul>
-        <li>Assisted in teaching SQL, database design, and indexing for the course MYY701 Database Systems.</li>
+        <li>
+          <strong>Researcher, GraphTempo</strong>, University of Ioannina, Greece  
+          <span class="period">(2022–Present)</span>
+          <ul>
+            <li>Developed algorithms for future temporal shortest path queries.</li>
+            <li>Applied graph embeddings and machine learning models for predictive path queries.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Teaching Assistant, Database Lab</strong>, University of Ioannina, Greece  
+          <span class="period">(2022–Present)</span>
+          <ul>
+            <li>Assisted in teaching SQL, database design, and indexing for the course MYY701 Database Systems.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Teaching Assistant, Operating Systems Lab</strong>, University of Ioannina, Greece  
+          <span class="period">(2021–2022)</span>
+          <ul>
+            <li>Conducted remedial teaching on Operating Systems topics, including memory management and deadlocks.</li>
+          </ul>
+        </li>
       </ul>
-    </li>
-    <li>
-      <strong>Teaching Assistant, Operating Systems Lab</strong>, University of Ioannina, Greece  
-      <span class="period">(2021 – 2022)</span>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
       <ul>
-        <li>Conducted remedial teaching on Operating Systems topics, including memory management and deadlocks.</li>
+        <li>
+          <strong>Fair Network Communities through Group Modularity</strong>, The ACM Web Conference (WWW) 2025<br>
+          <em>(Christos Gkartzios, Evaggelia Pitoura, Panayiotis Tsaparas)</em>
+        </li>
+        <li>
+          <strong>Future-Time Temporal Path Queries</strong>, GRADES-NDA @ SIGMOD 2023<br>
+          <em>(Christos Gkartzios, Evaggelia Pitoura)</em> <a href="https://dl.acm.org/doi/10.1145/3594778.3594879" target="_blank">[PDF]</a>
+        </li>
+        <li>
+          <strong>Predictive Temporal Path Queries</strong>, Master’s Thesis, University of Ioannina 2022 <a href="https://www.cse.uoi.gr/wp-content/uploads/publications/MT-2022-16.pdf" target="_blank">[PDF]</a>
+        </li>
+        <li>
+          <strong>Predicting the Length of Future Temporal Paths</strong>, 4th Summit on Gender Equality in Computing (GEC’22) 2022<br>
+          <em>(Christos Gkartzios, Evaggelia Pitoura)</em>
+        </li>
+        <li>
+          <strong>A Study of Homophily in GitHub</strong>, Diploma Thesis, University of Ioannina 2020
+        </li>
       </ul>
-    </li>
-  </ul>
-</section>
+    </section>
 
-<section id="publications">
-  <h2>Publications</h2>
-  <ul>
-    <li>
-      <strong>Fair Network Communities through Group Modularity</strong>,  
-      The ACM Web Conference (WWW) 2025  
-      <em>(Christos Gkartzios, Evaggelia Pitoula, Panayiotis Tsaparas)</em>
-    </li>
-    <li>
-      <strong>Future‑Time Temporal Path Queries</strong>,  
-      GRADES‑NDA @ SIGMOD 2023  
-      <em>(Christos Gkartzios, Evaggelia Pitoula)</em>  
-      <a href="https://dl.acm.org/doi/10.1145/3594778.3594879" target="_blank">[PDF]</a>
-    </li>
-    <li>
-      <strong>Predictive Temporal Path Queries</strong>,  
-      Master’s Thesis, University of Ioannina 2022  
-      <a href="https://www.cse.uoi.gr/wp-content/uploads/publications/MT-2022-16.pdf" target="_blank">[PDF]</a>
-    </li>
-    <li>
-      <strong>Predicting the Length of Future Temporal Paths</strong>,  
-      4th Summit on Gender Equality in Computing (GEC’22) 2022  
-      <em>(Christos Gkartzios, Evaggelia Pitoula)</em>
-    </li>
-    <li>
-      <strong>A Study of Homophily in GitHub</strong>,  
-      Diploma Thesis, University of Ioannina 2020
-    </li>
-  </ul>
-</section>
+    <section id="honors-awards">
+      <h2>Honors & Awards</h2>
+      <ul>
+        <li>
+          <strong>H.F.R.I. Scholarship for Ph.D. Candidates</strong>, Hellenic Foundation for Research and Innovation  <span class="period">(2024)</span>
+        </li>
+      </ul>
+    </section>
 
+    <section id="contact">
+      <h2>Contact</h2>
+      <ul>
+        <li>Email: <a href="mailto:chris.gartzios@hotmail.com">chris.gartzios@hotmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/christos-gartzios" target="_blank">Profile</a></li>
+        <li>GitHub: <a href="https://github.com/gartzis" target="_blank">github.com/gartzis</a></li>
+      </ul>
+    </section>
+  </main>
 
-<section id="honors-awards">
-  <h2>Honors &amp; Awards</h2>
-  <ul>
-    <li>
-      <strong>H.F.R.I. Scholarship for Ph.D. Candidates</strong>,  
-      Hellenic Foundation for Research and Innovation  
-      <span class="period">(2024)</span>
-    </li>
-  </ul>
-</section>
-</main>
-
-
-
-
+  <footer>
+    &copy; 2025 Christos Gkartzios. All rights reserved.
+  </footer>
 </body>
 </html>
