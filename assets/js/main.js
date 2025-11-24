@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-
   // === 2) Supernode navigation + collision-free layout ===
   const body       = document.body;
   const panels     = document.querySelectorAll(".content-panel");
@@ -60,7 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const centerNode = document.querySelector(".nav-node--center");
 
   // DOM order: Education, Academic Experience, Publications, Honors, Contact
-  const angleMap = [-90, -150, -30, 150, 30];
+  // Angles chosen so positions are symmetric around the center:
+  //  -90 : top (Education)
+  //  180 : left center (Academic Experience)
+  //    0 : right center (Honors & Awards)
+  //  225 : bottom-left (Publications)
+  //  315 : bottom-right (Contact)
+  const angleMap = [-90, 180, 0, 225, 315];
 
   function layoutOrbitNodes() {
     if (!navHolder || !centerNode || navNodes.length === 0) return;
@@ -70,11 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const cx = width / 2;
     const cy = height / 2;
 
-    // approximate radius of the CV node (it’s a circle)
+    // approximate radius of the center node (it's a circle)
     const centerRadius =
       Math.max(centerNode.offsetWidth, centerNode.offsetHeight) / 2;
 
-    const gap = 6; // px between closest parts of CV and a pill
+    const gap = 6; // px between closest parts of center and a pill
 
     navNodes.forEach((node, index) => {
       const angleDeg = angleMap[index % angleMap.length];
@@ -139,4 +143,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
