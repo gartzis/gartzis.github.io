@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
           value: 80,
           density: { enable: true, value_area: 800 }
         },
-        color: { value: "#22c55e" },             // node color
+        color: { value: "#22c55e" },
         shape: { type: "circle" },
         opacity: {
           value: 0.8,
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         line_linked: {
           enable: true,
           distance: 130,
-          color: "#4ade80",                     // edge color
+          color: "#4ade80",
           opacity: 0.8,
           width: 1.2
         },
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === 2) Supernode navigation + collision-free layout ===
+  // === 2) Supernode navigation + symmetric, collision-free layout ===
   const body       = document.body;
   const panels     = document.querySelectorAll(".content-panel");
   const navNodes   = document.querySelectorAll(".nav-node[data-target]");
@@ -57,14 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const navHolder  = document.querySelector(".nav-nodes");
   const centerNode = document.querySelector(".nav-node--center");
 
-  // DOM order: Education, Academic Experience, Publications, Honors, Contact
-  // Angles chosen so positions are symmetric around the center:
-  //  -90 : top (Education)
-  //  180 : left center (Academic Experience)
-  //    0 : right center (Honors & Awards)
-  //  225 : bottom-left (Publications)
-  //  315 : bottom-right (Contact)
-  const angleMap = [-90, 180, 0, 225, 315];
+  // DOM order (matching your HTML):
+  //   Education, Academic Experience, Publications, Honors & Awards, Contact
+  // Symmetric angles around the center (in CSS coordinates, y downwards).
+  const angleMap = [-90, -150, -30, 150, 30];
 
   function layoutOrbitNodes() {
     if (!navHolder || !centerNode || navNodes.length === 0) return;
@@ -74,26 +70,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const cx = width / 2;
     const cy = height / 2;
 
-    // approximate radius of the center node (it's a circle)
+    // Radius of the center "Resume" node
     const centerRadius =
       Math.max(centerNode.offsetWidth, centerNode.offsetHeight) / 2;
 
-    const gap = 6; // px between closest parts of center and a pill
+    // Find the largest orbit-node half-diagonal (approximate each pill as a circle)
+    let maxNodeRadius = 0;
+    navNodes.forEach(node => {
+      const halfW = node.offsetWidth / 2;
+      const halfH = node.offsetHeight / 2;
+      const r = Math.sqrt(halfW * halfW + halfH * halfH);
+      if (r > maxNodeRadius) maxNodeRadius = r;
+    });
+
+    // Distance between the closest points of the center circle and any pill
+    const gap = 8; // tweak if you want a bit more / less space
+
+    // Single shared radius → all section nodes sit on the same circle
+    const baseRadius = centerRadius + maxNodeRadius + gap;
 
     navNodes.forEach((node, index) => {
       const angleDeg = angleMap[index % angleMap.length];
       const angleRad = (angleDeg * Math.PI) / 180;
 
-      // approximate pill by a circle using half-diagonal
-      const halfW = node.offsetWidth / 2;
-      const halfH = node.offsetHeight / 2;
-      const nodeRadius = Math.sqrt(halfW * halfW + halfH * halfH);
-
-      // minimum center-to-center distance so circles don't overlap
-      const r = centerRadius + nodeRadius + gap;
-
-      const x = cx + r * Math.cos(angleRad);
-      const y = cy + r * Math.sin(angleRad);
+      const x = cx + baseRadius * Math.cos(angleRad);
+      const y = cy + baseRadius * Math.sin(angleRad);
 
       node.style.left = `${x}px`;
       node.style.top  = `${y}px`;
