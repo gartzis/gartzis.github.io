@@ -50,11 +50,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === 2) Supernode navigation → toggle home / section view ===
-  const body     = document.body;
-  const panels   = document.querySelectorAll(".content-panel");
-  const navNodes = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
-  const backBtn  = document.querySelector(".back-button");
+  // === 2) Supernode navigation + circular layout ===
+  const body      = document.body;
+  const panels    = document.querySelectorAll(".content-panel");
+  const navNodes  = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
+  const backBtn   = document.querySelector(".back-button");
+  const navHolder = document.querySelector(".nav-nodes");
+
+  // Angles (degrees) for the 5 orbit nodes: top, upper-left, upper-right, lower-left, lower-right
+  const angleMap = [-90, -150, -30, 210, 330];
+
+  function layoutOrbitNodes() {
+    if (!navHolder || navNodes.length === 0) return;
+
+    const width  = navHolder.clientWidth;
+    const height = navHolder.clientHeight;
+    const cx = width / 2;
+    const cy = height / 2;
+
+    // Equal center-to-center radius for all orbit nodes
+    const radius = Math.min(width, height) / 2 - 40;
+
+    navNodes.forEach((node, index) => {
+      const angleDeg = angleMap[index % angleMap.length];
+      const angleRad = (angleDeg * Math.PI) / 180;
+
+      const x = cx + radius * Math.cos(angleRad);
+      const y = cy + radius * Math.sin(angleRad);
+
+      node.style.left = `${x}px`;
+      node.style.top  = `${y}px`;
+    });
+  }
+
+  layoutOrbitNodes();
+  window.addEventListener("resize", layoutOrbitNodes);
 
   function showPanel(id) {
     if (!id) return;
