@@ -57,8 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const backBtn   = document.querySelector(".back-button");
   const navHolder = document.querySelector(".nav-nodes");
 
-  // Angles (degrees) for the 5 orbit nodes: top, upper-left, upper-right, lower-left, lower-right
-  const angleMap = [-90, -150, -30, 210, 330];
+  // Angles for the 5 orbit nodes:
+  // top, upper-left, upper-right, lower-left, lower-right
+  const angleMap = [-90, -135, -45, 225, 315];
 
   function layoutOrbitNodes() {
     if (!navHolder || navNodes.length === 0) return;
@@ -68,8 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cx = width / 2;
     const cy = height / 2;
 
-    // Equal center-to-center radius for all orbit nodes
-    const radius = Math.min(width, height) / 2 - 40;
+    // slightly larger radius so bubbles don't touch the CV
+    const radiusMargin = 15;
+    const radius = Math.min(width, height) / 2 - radiusMargin;
 
     navNodes.forEach((node, index) => {
       const angleDeg = angleMap[index % angleMap.length];
