@@ -1,24 +1,37 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // === 1) Graph-like particle background using Jayant's particles.min.js ===
-  if (typeof particlesJS === "function") {
-    // his particles.min.js defines particlesJS.load(tagId) with built-in config
-    particlesJS.load("particle-background");
-  } else {
-    console.warn("particlesJS is not defined. Check that assets/js/particles.min.js is loaded correctly.");
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  // === 1) tsParticles load (unchanged) ===
+  tsParticles.load({
+    id: "particle-background",
+    options: { /* ... keep your existing options here ... */ }
+  });
 
-  // === 2) Scroll-in animation for sections (your current effect) ===
+  // === 2) Scroll-in animation + active nav node ===
   const sections = document.querySelectorAll("main section");
+  const navNodes = document.querySelectorAll('.navbar .nav-node');
+
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // fade in
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+
+          // highlight corresponding nav node
+          const id = entry.target.id;
+          navNodes.forEach(link => {
+            const target = link.getAttribute("href"); // e.g. "#education"
+            if (target === `#${id}`) {
+              link.classList.add("nav-node--active");
+            } else {
+              link.classList.remove("nav-node--active");
+            }
+          });
+
+          // we no longer unobserve, so it can update as you scroll back up/down
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.4 } // a bit higher so it flips when section is more centered
   );
 
   sections.forEach(section => {
@@ -27,19 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === 3) Smooth scroll for nav links ===
-  document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
+  document.querySelectorAll('.navbar .nav-node[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", e => {
+      const targetId = anchor.getAttribute("href");
       if (!targetId || targetId === "#") return;
 
       const el = document.querySelector(targetId);
       if (!el) return;
 
       e.preventDefault();
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 });
