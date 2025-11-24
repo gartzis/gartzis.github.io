@@ -282,17 +282,25 @@ body > *:not(#particle-background) {
 }
 
 
-/* Main layout – hidden until a section is chosen */
+/* Main layout – hidden on home, shown in section view */
 
 main {
   max-width: var(--max-width);
   margin: 26px auto 40px;
   padding: 0 16px 16px;
-  display: none; /* becomes block when a node is clicked */
+  display: none;
 }
 
-main.main--visible {
+body.show-section main {
   display: block;
+}
+
+body.show-section .back-button {
+  display: block;
+}
+
+body.show-section .nav-nodes {
+  display: none;
 }
 
 /* Panels: only active section visible */
@@ -309,6 +317,7 @@ main.main--visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 main section {
   margin-bottom: 24px;
@@ -426,5 +435,6 @@ a:hover {
     margin-top: 20px;
   }
 }
+
 
 
