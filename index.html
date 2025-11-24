@@ -7,59 +7,79 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-
 <body>
   <!-- graph-like moving particle background -->
   <div id="particle-background"></div>
 
   <!-- Hero header -->
-<header class="hero">
-  <div class="hero-inner">
-    <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
-    <div class="hero-text-block">
-      <div class="hero-tagline">Data Science · Graphs · Fairness</div>
-      <h1>Christos Gkartzios</h1>
-      <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
+      <div class="hero-text-block">
+        <div class="hero-tagline">Data Science · Graphs · Fairness</div>
+        <h1>Christos Gkartzios</h1>
+        <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
+      </div>
     </div>
-  </div>
 
-  <!-- floating navigation nodes -->
-  <div class="nav-nodes">
-    <a href="#education"            class="nav-node">Education</a>
-    <a href="#academic-experience"  class="nav-node">Academic Experience</a>
-    <a href="#publications"         class="nav-node">Publications</a>
-    <a href="#honors-awards"        class="nav-node">Honors &amp; Awards</a>
-    <a href="#contact"              class="nav-node">Contact</a>
-  </div>
-</header>
+    <!-- floating navigation supernodes in a circle -->
+    <div class="nav-nodes">
+      <!-- center CV node (put your CV at /cv.pdf or change href) -->
+      <a href="cv.pdf"
+         class="nav-node nav-node--center"
+         target="_blank"
+         rel="noopener">
+        CV
+      </a>
 
+      <!-- orbit nodes that swap content panels -->
+      <a href="#education"
+         class="nav-node"
+         data-target="education">Education</a>
 
+      <a href="#academic-experience"
+         class="nav-node"
+         data-target="academic-experience">Academic Experience</a>
+
+      <a href="#publications"
+         class="nav-node"
+         data-target="publications">Publications</a>
+
+      <a href="#honors-awards"
+         class="nav-node"
+         data-target="honors-awards">Honors &amp; Awards</a>
+
+      <a href="#contact"
+         class="nav-node"
+         data-target="contact">Contact</a>
+    </div>
+  </header>
 
   <main>
-    <section id="education">
+    <section id="education" class="content-panel content-panel--active">
       <h2>Education</h2>
       <ul>
         <li>
-          <strong>Ph.D. Candidate in Data Science</strong>, University of Ioannina, Greece  
+          <strong>Ph.D. Candidate in Data Science</strong>, University of Ioannina, Greece
           <span class="period">(2022–Present)</span><br>
           <em>Research Focus:</em> Future temporal queries, shortest paths, and fairness in network analysis.
         </li>
         <li>
-          <strong>M.Sc. in Data Science and Engineering</strong>, University of Ioannina, Greece  
+          <strong>M.Sc. in Data Science and Engineering</strong>, University of Ioannina, Greece
           <span class="period">(2022)</span>
         </li>
         <li>
-          <strong>Diploma in Computer Science and Engineering (Integrated M.Sc.)</strong>, University of Ioannina, Greece  
+          <strong>Diploma in Computer Science and Engineering (Integrated M.Sc.)</strong>, University of Ioannina, Greece
           <span class="period">(2021)</span>
         </li>
       </ul>
     </section>
 
-    <section id="academic-experience">
+    <section id="academic-experience" class="content-panel">
       <h2>Academic Experience</h2>
       <ul>
         <li>
-          <strong>Researcher, GraphTempo</strong>, University of Ioannina, Greece  
+          <strong>Researcher, GraphTempo</strong>, University of Ioannina, Greece
           <span class="period">(2022–Present)</span>
           <ul>
             <li>Developed algorithms for future temporal shortest path queries.</li>
@@ -67,14 +87,14 @@
           </ul>
         </li>
         <li>
-          <strong>Teaching Assistant, Database Lab</strong>, University of Ioannina, Greece  
+          <strong>Teaching Assistant, Database Lab</strong>, University of Ioannina, Greece
           <span class="period">(2022–Present)</span>
           <ul>
             <li>Assisted in teaching SQL, database design, and indexing for the course MYY701 Database Systems.</li>
           </ul>
         </li>
         <li>
-          <strong>Teaching Assistant, Operating Systems Lab</strong>, University of Ioannina, Greece  
+          <strong>Teaching Assistant, Operating Systems Lab</strong>, University of Ioannina, Greece
           <span class="period">(2021–2022)</span>
           <ul>
             <li>Conducted remedial teaching on Operating Systems topics, including memory management and deadlocks.</li>
@@ -83,7 +103,7 @@
       </ul>
     </section>
 
-    <section id="publications">
+    <section id="publications" class="content-panel">
       <h2>Publications</h2>
       <ul>
         <li>
@@ -92,10 +112,12 @@
         </li>
         <li>
           <strong>Future-Time Temporal Path Queries</strong>, GRADES-NDA @ SIGMOD 2023<br>
-          <em>(Christos Gkartzios, Evaggelia Pitoura)</em> <a href="https://dl.acm.org/doi/10.1145/3594778.3594879" target="_blank">[PDF]</a>
+          <em>(Christos Gkartzios, Evaggelia Pitoura)</em>
+          <a href="https://dl.acm.org/doi/10.1145/3594778.3594879" target="_blank">[PDF]</a>
         </li>
         <li>
-          <strong>Predictive Temporal Path Queries</strong>, Master’s Thesis, University of Ioannina 2022 <a href="https://www.cse.uoi.gr/wp-content/uploads/publications/MT-2022-16.pdf" target="_blank">[PDF]</a>
+          <strong>Predictive Temporal Path Queries</strong>, Master’s Thesis, University of Ioannina 2022
+          <a href="https://www.cse.uoi.gr/wp-content/uploads/publications/MT-2022-16.pdf" target="_blank">[PDF]</a>
         </li>
         <li>
           <strong>Predicting the Length of Future Temporal Paths</strong>, 4th Summit on Gender Equality in Computing (GEC’22) 2022<br>
@@ -107,16 +129,17 @@
       </ul>
     </section>
 
-    <section id="honors-awards">
-      <h2>Honors & Awards</h2>
+    <section id="honors-awards" class="content-panel">
+      <h2>Honors &amp; Awards</h2>
       <ul>
         <li>
-          <strong>H.F.R.I. Scholarship for Ph.D. Candidates</strong>, Hellenic Foundation for Research and Innovation  <span class="period">(2024)</span>
+          <strong>H.F.R.I. Scholarship for Ph.D. Candidates</strong>, Hellenic Foundation for Research and Innovation
+          <span class="period">(2024)</span>
         </li>
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="content-panel">
       <h2>Contact</h2>
       <ul>
         <li>Email: <a href="mailto:chris.gartzios@hotmail.com">chris.gartzios@hotmail.com</a></li>
@@ -126,16 +149,15 @@
     </section>
   </main>
 
-<!-- Footer with a class for styling -->
+  <!-- Footer -->
   <footer class="site-footer">
     &copy; 2025 Christos Gkartzios. All rights reserved.
   </footer>
 
-  <!-- Particle engine -->
-  <script src="assets/js/particles.min.js"></script>
+  <!-- Particle engine (tsParticles) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles/tsparticles.bundle.min.js"></script>
 
   <!-- Your custom JS -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
