@@ -407,12 +407,14 @@ a:hover {
   margin-left: 6px;
 }
 
+/* smaller GitHub icon */
 .pub-github-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
+  line-height: 0; /* prevent line-height from inflating the icon */
 }
 
 .pub-github-icon svg {
@@ -426,7 +428,6 @@ a:hover {
   fill: var(--accent);
   transform: translateY(-1px);
 }
-
 
 /* Responsive tweaks */
 
@@ -446,4 +447,3 @@ a:hover {
     margin-top: 20px;
   }
 }
-
