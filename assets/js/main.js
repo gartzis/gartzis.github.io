@@ -1,59 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === 1) Graph-like particle background ===
-  // Prefer tsParticles (from CDN); if not present, fall back to local particles.js
-  if (window.tsParticles && typeof tsParticles.load === "function") {
-    tsParticles.load({
-      id: "particle-background",
-      options: {
-        background: { color: "#020617" },
-        fullScreen: { enable: false },
-        detectRetina: true,
-        particles: {
-          number: {
-            value: 80,
-            density: { enable: true, area: 800 }
-          },
-          color: { value: "#22c55e" },
-          links: {
-            enable: true,
-            distance: 130,
-            color: "#4ade80",
-            opacity: 0.8,
-            width: 1.2
-          },
-          move: {
-            enable: true,
-            speed: 1.2,
-            direction: "none",
-            random: false,
-            straight: false,
-            outModes: { default: "bounce" }
-          },
-          opacity: { value: 0.8 },
-          size: { value: { min: 1.4, max: 3.4 } }
-        },
-        interactivity: {
-          events: {
-            onHover: { enable: true, mode: "grab" },
-            onClick: { enable: true, mode: "push" },
-            resize: true
-          },
-          modes: {
-            grab: { distance: 180, links: { opacity: 1 } },
-            push: { quantity: 4 }
-          }
-        }
-      }
-    });
-  } else if (window.particlesJS) {
-    // Fallback using particles.js (Jayant-style engine)
+  // === 1) Graph-like particle background with particles.js (Jayant-style) ===
+  if (window.particlesJS) {
     particlesJS("particle-background", {
       particles: {
         number: {
           value: 80,
           density: { enable: true, value_area: 800 }
         },
-        color: { value: "#22c55e" },
+        color: { value: "#22c55e" },             // node color
         shape: { type: "circle" },
         opacity: {
           value: 0.8,
@@ -66,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         line_linked: {
           enable: true,
           distance: 130,
-          color: "#4ade80",
+          color: "#4ade80",                     // edge color
           opacity: 0.8,
           width: 1.2
         },
@@ -82,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
+          onhover:  { enable: true, mode: "grab" },
+          onclick:  { enable: true, mode: "push" },
+          resize:   true
         },
         modes: {
           grab: { distance: 180, line_linked: { opacity: 1 } },
@@ -94,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       retina_detect: true
     });
   }
+
+
 
   // === 2) Supernode navigation + collision-free layout ===
   const body       = document.body;
@@ -183,3 +139,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
