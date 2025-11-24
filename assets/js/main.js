@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         move: {
           enable: true,
-          speed: 1.2,
+          speed: 0.5,
           direction: "none",
           random: false,
           straight: false,
@@ -144,3 +144,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
