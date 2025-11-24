@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === 1) Graph background with tsParticles ===
+  // === 1) Graph-like particle background with tsParticles ===
   tsParticles.load({
     id: "particle-background",
     options: {
@@ -7,22 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
         color: "#020617"
       },
       fullScreen: {
-        enable: false // we use the fixed #particle-background div
+        enable: false
       },
       detectRetina: true,
       particles: {
         number: {
           value: 80,
-          density: {
-            enable: true,
-            area: 800
-          }
+          density: { enable: true, area: 800 }
         },
         // node color (green)
-        color: {
-          value: "#22c55e"
-        },
-        // edges between nodes (lighter green)
+        color: { value: "#22c55e" },
+        // edges between nodes
         links: {
           enable: true,
           distance: 130,
@@ -36,89 +31,63 @@ document.addEventListener("DOMContentLoaded", () => {
           direction: "none",
           random: false,
           straight: false,
-          outModes: {
-            default: "bounce"
-          }
+          outModes: { default: "bounce" }
         },
-        opacity: {
-          value: 0.8
-        },
-        size: {
-          value: { min: 1.4, max: 3.4 }
-        }
+        opacity: { value: 0.8 },
+        size: { value: { min: 1.4, max: 3.4 } }
       },
       interactivity: {
         events: {
-          onHover: {
-            enable: true,
-            mode: "grab"      // edges grab towards cursor
-          },
-          onClick: {
-            enable: true,
-            mode: "push"      // click creates new nodes
-          },
+          onHover: { enable: true, mode: "grab" },
+          onClick: { enable: true, mode: "push" },
           resize: true
         },
         modes: {
-          grab: {
-            distance: 180,
-            links: {
-              opacity: 1
-            }
-          },
-          push: {
-            quantity: 4
-          }
+          grab: { distance: 180, links: { opacity: 1 } },
+          push: { quantity: 4 }
         }
       }
     }
   });
 
-  // === 2) Scroll-in animation + active nav node ===
-  const sections = document.querySelectorAll("main section");
-  const navNodes = document.querySelectorAll(".nav-node");
+  // === 2) Supernode navigation → swap panels ===
+  const panels   = document.querySelectorAll(".content-panel");
+  const navNodes = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // fade in section
-          entry.target.classList.add("visible");
+  function showPanel(id) {
+    // toggle panels
+    panels.forEach(panel => {
+      if (panel.id === id) {
+        panel.classList.add("content-panel--active");
+      } else {
+        panel.classList.remove("content-panel--active");
+      }
+    });
 
-          // highlight corresponding nav node
-          const id = entry.target.id;
-          navNodes.forEach(link => {
-            const target = link.getAttribute("href"); // e.g. "#education"
-            if (target === `#${id}`) {
-              link.classList.add("nav-node--active");
-            } else {
-              link.classList.remove("nav-node--active");
-            }
-          });
-        }
-      });
-    },
-    {
-      threshold: 0.4 // section is ~centered before switching
-    }
-  );
+    // toggle active state on orbit nodes
+    navNodes.forEach(node => {
+      const targetId = node.dataset.target;
+      if (targetId === id) {
+        node.classList.add("nav-node--active");
+      } else {
+        node.classList.remove("nav-node--active");
+      }
+    });
+  }
 
-  sections.forEach(section => {
-    section.classList.add("section-fade");
-    observer.observe(section);
-  });
+  // default active panel
+  showPanel("education");
 
-  // === 3) Smooth scroll for nav nodes ===
-  document.querySelectorAll('.nav-node[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
-      const targetId = anchor.getAttribute("href");
-      if (!targetId || targetId === "#") return;
+  // click handlers for orbit nodes
+  navNodes.forEach(node => {
+    node.addEventListener("click", e => {
+      e.preventDefault(); // prevent hash jump
+      const targetId = node.dataset.target;
+      if (!targetId) return;
+      showPanel(targetId);
 
-      const el = document.querySelector(targetId);
-      if (!el) return;
-
-      e.preventDefault();
-      el.scrollIntoView({
+      // optional: keep hero + circle in view
+      document.querySelector("main").scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
