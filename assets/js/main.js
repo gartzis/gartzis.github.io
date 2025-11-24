@@ -1,19 +1,88 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === 1) tsParticles load (unchanged) ===
+  // === 1) Graph background with tsParticles ===
   tsParticles.load({
     id: "particle-background",
-    options: { /* ... keep your existing options here ... */ }
+    options: {
+      background: {
+        color: "#020617"
+      },
+      fullScreen: {
+        enable: false // we use the fixed #particle-background div
+      },
+      detectRetina: true,
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            area: 800
+          }
+        },
+        // node color (green)
+        color: {
+          value: "#22c55e"
+        },
+        // edges between nodes (lighter green)
+        links: {
+          enable: true,
+          distance: 130,
+          color: "#4ade80",
+          opacity: 0.8,
+          width: 1.2
+        },
+        move: {
+          enable: true,
+          speed: 1.2,
+          direction: "none",
+          random: false,
+          straight: false,
+          outModes: {
+            default: "bounce"
+          }
+        },
+        opacity: {
+          value: 0.8
+        },
+        size: {
+          value: { min: 1.4, max: 3.4 }
+        }
+      },
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true,
+            mode: "grab"      // edges grab towards cursor
+          },
+          onClick: {
+            enable: true,
+            mode: "push"      // click creates new nodes
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 180,
+            links: {
+              opacity: 1
+            }
+          },
+          push: {
+            quantity: 4
+          }
+        }
+      }
+    }
   });
 
   // === 2) Scroll-in animation + active nav node ===
   const sections = document.querySelectorAll("main section");
-  const navNodes = document.querySelectorAll('.navbar .nav-node');
+  const navNodes = document.querySelectorAll(".nav-node");
 
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // fade in
+          // fade in section
           entry.target.classList.add("visible");
 
           // highlight corresponding nav node
@@ -26,12 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
               link.classList.remove("nav-node--active");
             }
           });
-
-          // we no longer unobserve, so it can update as you scroll back up/down
         }
       });
     },
-    { threshold: 0.4 } // a bit higher so it flips when section is more centered
+    {
+      threshold: 0.4 // section is ~centered before switching
+    }
   );
 
   sections.forEach(section => {
@@ -39,8 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
-  // === 3) Smooth scroll for nav links ===
-  document.querySelectorAll('.navbar .nav-node[href^="#"]').forEach(anchor => {
+  // === 3) Smooth scroll for nav nodes ===
+  document.querySelectorAll('.nav-node[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", e => {
       const targetId = anchor.getAttribute("href");
       if (!targetId || targetId === "#") return;
@@ -49,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!el) return;
 
       e.preventDefault();
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     });
   });
 });
