@@ -4,104 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christos Gkartzios</title>
-  <style>
-    :root {
-      --primary: #2c3e50;
-      --secondary: #18bc9c;
-      --light: #ecf0f1;
-      --dark: #000000; /* text color set to black */
-      --accent: #e74c3c;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      /* background image: replace 'landscape.jpg' with your file in assets/images */
-      background: url("assets/images/landscape.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: var(--dark);
-    }
-     header {
-      position: relative;
-      background: var(--primary);
-      color: var(--light);
-      padding: 2rem 0;
-      text-align: center;
-    }
-    .profile-pic {
-      position: relative;
-      top: 0rem;
-      left: 0rem;
-      width: 150px;           /* increased size for zoom effect */
-      height: 150px;          /* increased size */
-      border-radius: 50%;
-      object-fit: cover;      /* ensures image fills the circle */
-      object-position: center center; /* adjust focal point if needed */
-      border: 2px solid var(--light);
-      /* optional: slight scale on hover */
-      transition: transform 0.2s;
-    }
-    nav {
-      background: var(--dark);
-    }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-    }
-    nav a {
-      color: var(--light);
-      padding: 1rem 1.5rem;
-      text-decoration: none;
-      display: block;
-    }
-    nav a:hover {
-      background: var(--secondary);
-    }
-    main {
-      background: rgba(255,255,255,0.85);
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    section h2 {
-      border-bottom: 2px solid var(--secondary);
-      padding-bottom: .5rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    ul {
-      list-style: none;
-    }
-    ul li {
-      margin-bottom: .75rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: var(--dark);
-      color: var(--light);
-    }
-    .period {
-      color: #666;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
+
 <body>
-  <header>
-    <!-- add your profile picture here -->
-    <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
-    <h1>Christos Gkartzios</h1>
-    <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
+  <!-- graph-like moving particle background -->
+  <div id="particle-background"></div>
+
+  <!-- Hero header -->
+  <header class="hero">
+    <div class="hero-inner">
+      <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
+      <div class="hero-text-block">
+        <div class="hero-tagline">Data Science · Graphs · Fairness</div>
+        <h1>Christos Gkartzios</h1>
+        <p>Ph.D. Candidate | Data Scientist | Graph Algorithms Enthusiast</p>
+      </div>
+    </div>
   </header>
 
-  <nav>
+  <!-- Sticky nav (same links, just added a class) -->
+  <nav class="navbar">
     <ul>
       <li><a href="#education">Education</a></li>
       <li><a href="#academic-experience">Academic Experience</a></li>
@@ -202,8 +126,13 @@
     </section>
   </main>
 
-  <footer>
+<!-- Footer with a class for styling -->
+  <footer class="site-footer">
     &copy; 2025 Christos Gkartzios. All rights reserved.
   </footer>
+
+  <!-- Particle engine + custom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
