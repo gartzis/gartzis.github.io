@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
           value: 80,
           density: { enable: true, area: 800 }
         },
-        // node color (green)
         color: { value: "#22c55e" },
-        // edges between nodes
         links: {
           enable: true,
           distance: 130,
@@ -53,13 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // === 2) Supernode navigation + circular layout ===
   const body      = document.body;
   const panels    = document.querySelectorAll(".content-panel");
-  const navNodes  = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
+  const navNodes  = document.querySelectorAll(".nav-node[data-target]");
   const backBtn   = document.querySelector(".back-button");
   const navHolder = document.querySelector(".nav-nodes");
 
-  // Angles for the 5 orbit nodes:
-  // top, upper-left, upper-right, lower-left, lower-right
-  const angleMap = [-90, -135, -45, 225, 315];
+  // DOM order: Education, Academic Experience, Publications, Honors, Contact
+  // Angles in CSS coordinate system (y downwards):
+  //  -90 : top
+  // -150 : upper-left
+  //  -30 : upper-right
+  //  150 : lower-left
+  //   30 : lower-right
+  const angleMap = [-90, -150, -30, 150, 30];
 
   function layoutOrbitNodes() {
     if (!navHolder || navNodes.length === 0) return;
@@ -69,9 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cx = width / 2;
     const cy = height / 2;
 
-    // slightly larger radius so bubbles don't touch the CV
-    const radiusMargin = 15;
-    const radius = Math.min(width, height) / 2 - radiusMargin;
+    // Radius from the CV center to each section node
+    const radius = Math.min(width, height) / 2 - 15;
 
     navNodes.forEach((node, index) => {
       const angleDeg = angleMap[index % angleMap.length];
@@ -91,52 +93,35 @@ document.addEventListener("DOMContentLoaded", () => {
   function showPanel(id) {
     if (!id) return;
 
-    // switch to "section" mode
     body.classList.add("show-section");
 
-    // toggle panels
     panels.forEach(panel => {
-      if (panel.id === id) {
-        panel.classList.add("content-panel--active");
-      } else {
-        panel.classList.remove("content-panel--active");
-      }
+      panel.classList.toggle("content-panel--active", panel.id === id);
     });
 
-    // toggle active state on orbit nodes
     navNodes.forEach(node => {
       const targetId = node.dataset.target;
-      if (targetId === id) {
-        node.classList.add("nav-node--active");
-      } else {
-        node.classList.remove("nav-node--active");
-      }
+      node.classList.toggle("nav-node--active", targetId === id);
     });
 
-    // scroll to top so section feels like its own screen
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // click handlers for orbit nodes
   navNodes.forEach(node => {
     node.addEventListener("click", e => {
-      e.preventDefault(); // prevent hash jump
-      const targetId = node.dataset.target;
-      showPanel(targetId);
+      e.preventDefault();
+      showPanel(node.dataset.target);
     });
   });
 
-  // back button → return to home (hero + circle)
   if (backBtn) {
     backBtn.addEventListener("click", () => {
       body.classList.remove("show-section");
 
-      // hide all panels
       panels.forEach(panel =>
         panel.classList.remove("content-panel--active")
       );
 
-      // clear active highlight on nodes
       navNodes.forEach(node =>
         node.classList.remove("nav-node--active")
       );
