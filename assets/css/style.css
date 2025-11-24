@@ -260,6 +260,28 @@ body > *:not(#particle-background) {
   }
 }
 
+.back-button {
+  display: none;
+  margin: 20px auto 0;
+  max-width: var(--max-width);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.94);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.9);
+}
+
+.back-button:hover {
+  border-color: rgba(248, 250, 252, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.9),
+    0 14px 32px rgba(15, 23, 42, 1);
+}
+
+
 /* Main layout – hidden until a section is chosen */
 
 main {
@@ -404,4 +426,5 @@ a:hover {
     margin-top: 20px;
   }
 }
+
 
