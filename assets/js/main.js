@@ -1,73 +1,77 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize tsParticles for the moving graph-style background
-  if (window.tsParticles) {
-    tsParticles.load("particle-background", {
-      fpsLimit: 60,
-      background: {
-        color: "#020617"
-      },
-      particles: {
-        number: {
-          value: 70,
-          density: {
-            enable: true,
-            area: 900
-          }
-        },
-        color: {
-          value: "#8be9fd"
-        },
-        links: {
+  // === 1) Graph-like particle background (nodes + edges + click to add) ===
+  tsParticles.load("particle-background", {
+    fullScreen: {
+      enable: false // use our fixed #particle-background div, not full screen
+    },
+    background: {
+      color: "#020617"
+    },
+    detectRetina: true,
+    particles: {
+      number: {
+        value: 80,
+        density: {
           enable: true,
-          distance: 130,
-          color: "#64748b",
-          opacity: 0.7,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 1.1,
-          direction: "none",
-          random: false,
-          straight: false,
-          outModes: {
-            default: "bounce"
-          }
-        },
-        opacity: {
-          value: 0.7
-        },
-        size: {
-          value: { min: 1.4, max: 3.4 }
+          area: 800
         }
       },
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: "repulse"
-          },
-          onClick: {
-            enable: true,
-            mode: "push" // click creates new nodes
-          },
-          resize: true
-        },
-        modes: {
-          repulse: {
-            distance: 140,
-            duration: 0.25
-          },
-          push: {
-            quantity: 4
-          }
+      // node color
+      color: {
+        value: "#facc15" // warm yellow, clearly visible on your dark bg
+      },
+      // edges between nodes
+      links: {
+        enable: true,
+        distance: 130,
+        color: "#fbbf24",
+        opacity: 0.8,
+        width: 1.2
+      },
+      move: {
+        enable: true,
+        speed: 1.2,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: {
+          default: "bounce"
         }
       },
-      detectRetina: true
-    });
-  }
+      opacity: {
+        value: 0.8
+      },
+      size: {
+        value: { min: 1.4, max: 3.4 }
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "grab"      // pointer “pulls” edges like Jayant’s site
+        },
+        onClick: {
+          enable: true,
+          mode: "push"      // clicking creates new nodes
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 180,
+          links: {
+            opacity: 1
+          }
+        },
+        push: {
+          quantity: 4
+        }
+      }
+    }
+  });
 
-  // Simple scroll-in animation for sections (Varad-style movement)
+  // === 2) Scroll-in animation for sections (Varad-style movement) ===
   const sections = document.querySelectorAll("main section");
   const observer = new IntersectionObserver(
     entries => {
@@ -88,11 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
-  // Smooth scroll for nav links (extra, even though CSS has smooth scroll)
+  // === 3) Smooth scroll for nav links ===
   document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", e => {
       const targetId = anchor.getAttribute("href");
       if (!targetId || targetId === "#") return;
+
       const el = document.querySelector(targetId);
       if (!el) return;
 
