@@ -131,6 +131,8 @@ body > *:not(#particle-background) {
 /* base node style */
 .nav-node {
   position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   display: inline-flex;
   align-items: center;
@@ -210,33 +212,6 @@ body > *:not(#particle-background) {
   height: 90px;
   border-radius: 999px;
   font-size: 0.95rem;
-}
-
-/* orbit positions (approximate circle, spaced from center) */
-
-.nav-node[data-target="education"] {
-  top: 6%;
-  left: 50%;
-}
-
-.nav-node[data-target="academic-experience"] {
-  top: 30%;
-  left: 14%;
-}
-
-.nav-node[data-target="publications"] {
-  top: 30%;
-  left: 86%;
-}
-
-.nav-node[data-target="honors-awards"] {
-  top: 82%;
-  left: 26%;
-}
-
-.nav-node[data-target="contact"] {
-  top: 82%;
-  left: 74%;
 }
 
 @media (max-width: 640px) {
