@@ -388,6 +388,46 @@ a:hover {
   border-top: 1px solid rgba(30, 64, 175, 0.7);
 }
 
+/* Publication title link + GitHub icon */
+
+.pub-title-link {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.pub-title-link:hover {
+  color: #f9fafb;
+  text-decoration: underline;
+}
+
+.pub-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+.pub-github-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.pub-github-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--text-muted);
+  transition: fill 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.pub-github-icon:hover svg {
+  fill: var(--accent);
+  transform: translateY(-1px);
+}
+
+
 /* Responsive tweaks */
 
 @media (max-width: 640px) {
@@ -406,3 +446,4 @@ a:hover {
     margin-top: 20px;
   }
 }
+
