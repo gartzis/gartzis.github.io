@@ -48,7 +48,7 @@ body > *:not(#particle-background) {
   z-index: 1;
 }
 
-/* Hero header */
+/* Hero header (home screen) */
 
 .hero {
   padding: 96px 16px 32px;
@@ -258,12 +258,17 @@ body > *:not(#particle-background) {
   }
 }
 
-/* Main layout */
+/* Main layout – hidden until a section is chosen */
 
 main {
   max-width: var(--max-width);
   margin: 26px auto 40px;
   padding: 0 16px 16px;
+  display: none; /* becomes block when a node is clicked */
+}
+
+main.main--visible {
+  display: block;
 }
 
 /* Panels: only active section visible */
