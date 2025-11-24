@@ -11,7 +11,7 @@
   <!-- graph-like moving particle background -->
   <div id="particle-background"></div>
 
-  <!-- Hero header -->
+  <!-- Hero "home screen" -->
   <header class="hero">
     <div class="hero-inner">
       <img src="assets/images/profile.jpg" alt="Christos Gkartzios" class="profile-pic">
@@ -32,7 +32,7 @@
         CV
       </a>
 
-      <!-- orbit nodes that swap content panels -->
+      <!-- orbit nodes that swap to section screens -->
       <a href="#education"
          class="nav-node"
          data-target="education">Education</a>
@@ -55,8 +55,9 @@
     </div>
   </header>
 
-  <main>
-    <section id="education" class="content-panel content-panel--active">
+  <!-- Section screens (hidden until a node is clicked) -->
+  <main id="main-content">
+    <section id="education" class="content-panel">
       <h2>Education</h2>
       <ul>
         <li>
@@ -149,7 +150,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (will show under section screens) -->
   <footer class="site-footer">
     &copy; 2025 Christos Gkartzios. All rights reserved.
   </footer>
