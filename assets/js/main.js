@@ -50,11 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === 2) Supernode navigation → swap panels ===
-  const panels   = document.querySelectorAll(".content-panel");
+  // === 2) Supernode navigation → home screen → section screen ===
+  const hero    = document.querySelector(".hero");
+  const main    = document.querySelector("main");
+  const panels  = document.querySelectorAll(".content-panel");
   const navNodes = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
 
   function showPanel(id) {
+    if (!main || !hero) return;
+
+    // hide hero (home), show main area
+    hero.style.display = "none";
+    main.classList.add("main--visible");
+
     // toggle panels
     panels.forEach(panel => {
       if (panel.id === id) {
@@ -73,24 +81,21 @@ document.addEventListener("DOMContentLoaded", () => {
         node.classList.remove("nav-node--active");
       }
     });
-  }
 
-  // default active panel
-  showPanel("education");
+    // scroll to top so section feels like a new screen
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 
   // click handlers for orbit nodes
   navNodes.forEach(node => {
     node.addEventListener("click", e => {
-      e.preventDefault(); // prevent hash jump
+      e.preventDefault(); // prevent #hash jump
       const targetId = node.dataset.target;
       if (!targetId) return;
       showPanel(targetId);
-
-      // optional: keep hero + circle in view
-      document.querySelector("main").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
     });
   });
 });
