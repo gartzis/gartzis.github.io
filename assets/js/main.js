@@ -48,39 +48,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === 2) Supernode navigation + circular layout ===
-  const body      = document.body;
-  const panels    = document.querySelectorAll(".content-panel");
-  const navNodes  = document.querySelectorAll(".nav-node[data-target]");
-  const backBtn   = document.querySelector(".back-button");
-  const navHolder = document.querySelector(".nav-nodes");
+  // === 2) Supernode navigation + collision-free layout ===
+  const body       = document.body;
+  const panels     = document.querySelectorAll(".content-panel");
+  const navNodes   = document.querySelectorAll(".nav-node[data-target]");
+  const backBtn    = document.querySelector(".back-button");
+  const navHolder  = document.querySelector(".nav-nodes");
+  const centerNode = document.querySelector(".nav-node--center");
 
   // DOM order: Education, Academic Experience, Publications, Honors, Contact
-  // Angles in CSS coordinate system (y downwards):
-  //  -90 : top
-  // -150 : upper-left
-  //  -30 : upper-right
-  //  150 : lower-left
-  //   30 : lower-right
+  // Angles in screen coords (y downwards)
   const angleMap = [-90, -150, -30, 150, 30];
 
   function layoutOrbitNodes() {
-    if (!navHolder || navNodes.length === 0) return;
+    if (!navHolder || !centerNode || navNodes.length === 0) return;
 
     const width  = navHolder.clientWidth;
     const height = navHolder.clientHeight;
     const cx = width / 2;
     const cy = height / 2;
 
-    // Radius from the CV center to each section node
-    const radius = Math.min(width, height) / 2 - 15;
+    // approximate radius of the CV node (it’s a circle)
+    const centerRadius =
+      Math.max(centerNode.offsetWidth, centerNode.offsetHeight) / 2;
+
+    const gap = 6; // pixels between closest parts of CV and a pill
 
     navNodes.forEach((node, index) => {
       const angleDeg = angleMap[index % angleMap.length];
       const angleRad = (angleDeg * Math.PI) / 180;
 
-      const x = cx + radius * Math.cos(angleRad);
-      const y = cy + radius * Math.sin(angleRad);
+      // approximate pill by a circle using half-diagonal
+      const halfW = node.offsetWidth / 2;
+      const halfH = node.offsetHeight / 2;
+      const nodeRadius = Math.sqrt(halfW * halfW + halfH * halfH);
+
+      // minimum center-to-center distance so circles don't overlap
+      const r = centerRadius + nodeRadius + gap;
+
+      const x = cx + r * Math.cos(angleRad);
+      const y = cy + r * Math.sin(angleRad);
 
       node.style.left = `${x}px`;
       node.style.top  = `${y}px`;
@@ -88,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   layoutOrbitNodes();
+  // in case of resize / font changes
   window.addEventListener("resize", layoutOrbitNodes);
 
   function showPanel(id) {
