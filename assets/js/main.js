@@ -50,52 +50,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === 2) Supernode navigation → home screen → section screen ===
-  const hero    = document.querySelector(".hero");
-  const main    = document.querySelector("main");
-  const panels  = document.querySelectorAll(".content-panel");
-  const navNodes = document.querySelectorAll(".nav-node[data-target]"); // orbit nodes only
+ // === 2) Supernode navigation → toggle home / section view ===
+const body     = document.body;
+const panels   = document.querySelectorAll(".content-panel");
+const navNodes = document.querySelectorAll(".nav-node[data-target]");
+const backBtn  = document.querySelector(".back-button");
 
-  function showPanel(id) {
-    if (!main || !hero) return;
+function showPanel(id) {
+  if (!id) return;
 
-    // hide hero (home), show main area
-    hero.style.display = "none";
-    main.classList.add("main--visible");
+  // switch to "section" mode
+  body.classList.add("show-section");
 
-    // toggle panels
-    panels.forEach(panel => {
-      if (panel.id === id) {
-        panel.classList.add("content-panel--active");
-      } else {
-        panel.classList.remove("content-panel--active");
-      }
-    });
+  // toggle panels
+  panels.forEach(panel => {
+    if (panel.id === id) {
+      panel.classList.add("content-panel--active");
+    } else {
+      panel.classList.remove("content-panel--active");
+    }
+  });
 
-    // toggle active state on orbit nodes
-    navNodes.forEach(node => {
-      const targetId = node.dataset.target;
-      if (targetId === id) {
-        node.classList.add("nav-node--active");
-      } else {
-        node.classList.remove("nav-node--active");
-      }
-    });
-
-    // scroll to top so section feels like a new screen
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-
-  // click handlers for orbit nodes
+  // toggle active state on orbit nodes
   navNodes.forEach(node => {
-    node.addEventListener("click", e => {
-      e.preventDefault(); // prevent #hash jump
-      const targetId = node.dataset.target;
-      if (!targetId) return;
-      showPanel(targetId);
-    });
+    const targetId = node.dataset.target;
+    if (targetId === id) {
+      node.classList.add("nav-node--active");
+    } else {
+      node.classList.remove("nav-node--active");
+    }
+  });
+
+  // scroll to top so section feels like its own screen
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// click handlers for orbit nodes
+navNodes.forEach(node => {
+  node.addEventListener("click", e => {
+    e.preventDefault();
+    const targetId = node.dataset.target;
+    showPanel(targetId);
   });
 });
+
+// back button → return to home (hero + circle)
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    body.classList.remove("show-section");
+
+    // hide all panels
+    panels.forEach(panel =>
+      panel.classList.remove("content-panel--active")
+    );
+
+    // clear active highlight on nodes
+    navNodes.forEach(node =>
+      node.classList.remove("nav-node--active")
+    );
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+ 
