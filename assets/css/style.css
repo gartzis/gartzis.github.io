@@ -447,3 +447,42 @@ a:hover {
   }
 }
 
+/* Contact icons row */
+#contact .contact-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+}
+
+#contact .contact-icons li {
+  margin: 0; /* override generic li margin */
+}
+
+#contact .contact-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#contact .contact-icons img {
+  width: 28px;   /* tweak size if needed */
+  height: 28px;
+  display: block;
+  border-radius: 6px;  /* optional: soft corners */
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.8);
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    filter 0.15s ease-out;
+}
+
+#contact .contact-icons a:hover img {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 1);
+  filter: brightness(1.12);
+}
+
+
+
