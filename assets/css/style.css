@@ -339,7 +339,8 @@ em {
 }
 
 a {
-  color: var(--accent);
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
@@ -445,3 +446,4 @@ a:hover {
     margin-top: 20px;
   }
 }
+
